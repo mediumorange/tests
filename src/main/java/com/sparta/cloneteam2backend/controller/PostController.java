@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/api/posts")
@@ -50,19 +50,22 @@ public class PostController {
         if(postImage != null) {
             s3Service.uploadFile(postImage, String.valueOf(Imgtarget.POST), post.getPostId());
         }
-        facilitiesService.createFacilities(post.getPostId(), requestDto.getFacilitiesList());
+        if(requestDto.getFacilitiesList().size() != 0) {
+            facilitiesService.createFacilities(post.getPostId(), requestDto.getFacilitiesList());
+        }
         return new ResponseEntity<>(
                 ResponseDto.success(post), HttpStatus.OK);
     }
 
     // 포스트 수정
     @PutMapping("/{postId}")
-    public ResponseEntity<ResponseDto> updatePost(@PathVariable Long postId, @RequestPart PostRequestDto requestDto, List<String> deleteFiles,
-                                                  @RequestPart(required = false) MultipartFile[] postImage) {
-        Post post = postService.createPost(requestDto);
+    public ResponseEntity<ResponseDto> updatePost(@PathVariable Long postId, @RequestPart PostRequestDto requestDto, ArrayList<String> deleteFiles,
+            @RequestPart(required = false) MultipartFile[] postImage) throws IllegalAccessException {
+        Post post = postService.updatePost(postId, requestDto);
         if(postImage != null) {
             s3Service.updateFile(deleteFiles, postImage, String.valueOf(Imgtarget.POST), postId);
         }
+        facilitiesService.updateFacilities(post.getPostId(), requestDto.getFacilitiesList());
         return new ResponseEntity<>(
                 ResponseDto.success(post), HttpStatus.OK);
     }
@@ -71,6 +74,7 @@ public class PostController {
     @DeleteMapping("/{postId}")
     public ResponseEntity<ResponseDto> deletePost(@PathVariable Long postId) {
         s3Service.deleteFile(Imgtarget.POST, postId);
+        facilitiesService.deleteFacilities(postId);
         return new ResponseEntity<>(
                 ResponseDto.success(postService.deletePost(postId)), HttpStatus.OK);
     }

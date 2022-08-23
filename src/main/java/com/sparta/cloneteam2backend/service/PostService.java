@@ -2,9 +2,11 @@ package com.sparta.cloneteam2backend.service;
 
 import com.sparta.cloneteam2backend.dto.post.PostRequestDto;
 import com.sparta.cloneteam2backend.dto.post.PostResponseDto;
+import com.sparta.cloneteam2backend.model.Facilities;
 import com.sparta.cloneteam2backend.model.Img;
 import com.sparta.cloneteam2backend.model.Imgtarget;
 import com.sparta.cloneteam2backend.model.Post;
+import com.sparta.cloneteam2backend.repository.FacilitiesRepository;
 import com.sparta.cloneteam2backend.repository.ImgRepository;
 import com.sparta.cloneteam2backend.repository.PostRepository;
 import com.sparta.cloneteam2backend.repository.ReviewRepository;
@@ -22,7 +24,8 @@ public class PostService {
     private final PostRepository postRepository;
     private final ReviewRepository reviewRepository;
     private final ImgRepository imgRepository;
-
+    private final FacilitiesRepository facilitiesRepository;
+    
     // 포스트 리스트 조회
     public List<PostResponseDto> getPostList() {
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
@@ -47,10 +50,12 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("포스트가 존재하지 않습니다."));
         Double reviewStar = reviewRepository.existsAllReviewStar(postId).orElse(0.0d);
         List<Img> imageFiles = imgRepository.findAllByTargetId(Imgtarget.POST, postId);
+        List<Facilities> facilitiesList = facilitiesRepository.findAllByPostId(postId);
         return PostResponseDto.builder()
                 .post(post)
                 .reviewStar(reviewStar)
                 .imageFiles(imageFiles)
+                .facilitiesList(facilitiesList)
                 .build();
     }
 

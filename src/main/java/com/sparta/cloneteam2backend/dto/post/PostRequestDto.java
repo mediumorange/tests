@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,7 @@ public class PostRequestDto {
 
     private String postFee;
 
-    private List<String> facilitiesList;
+    private ArrayList facilitiesList = new ArrayList();
 
     public Post createPost() {
         return Post.builder()

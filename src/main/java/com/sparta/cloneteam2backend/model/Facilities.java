@@ -1,5 +1,6 @@
 package com.sparta.cloneteam2backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,12 @@ import javax.persistence.*;
 public class Facilities {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     @Id
     private Long facilitiesId;
 
     @Column
+    @JsonIgnore
     private Long postId;
 
     @Column

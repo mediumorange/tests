@@ -1,6 +1,6 @@
 package com.sparta.cloneteam2backend.jwt;
 
-import com.sparta.cloneteam2backend.dto.Auth.TokenDto;
+import com.sparta.cloneteam2backend.dto.user.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

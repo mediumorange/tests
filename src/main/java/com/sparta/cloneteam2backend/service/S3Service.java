@@ -42,8 +42,6 @@ public class S3Service {
 				throw new IllegalArgumentException();
 			}
 			omd.setContentType(file.getContentType());
-			omd.setContentLength(file.getSize());
-			omd.setHeader("filename", file.getOriginalFilename());
 			try {
 				amazonS3.putObject(new PutObjectRequest(bucket + "/" + targetDirectory,
 						fileName, file.getInputStream(), omd)

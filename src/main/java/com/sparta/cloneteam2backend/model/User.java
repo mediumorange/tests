@@ -1,5 +1,6 @@
 package com.sparta.cloneteam2backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,11 @@ public class User {
     private String userNickname;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String userPassword;
 
     @Enumerated(EnumType.STRING)
+    @JsonIgnore
     private Authority authority;
 
 

@@ -2,6 +2,7 @@ package com.sparta.cloneteam2backend.dto.post;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sparta.cloneteam2backend.model.Category;
+import com.sparta.cloneteam2backend.model.Facilities;
 import com.sparta.cloneteam2backend.model.Img;
 import com.sparta.cloneteam2backend.model.Post;
 import lombok.Builder;
@@ -33,8 +34,10 @@ public class PostResponseDto {
 
     private Object[] imageFiles;
 
+    private List<Facilities> facilitiesList;
+
     @Builder
-    public PostResponseDto(Post post, Double reviewStar, List<Img> imageFiles) {
+    public PostResponseDto(Post post, Double reviewStar, List<Img> imageFiles, List<Facilities> facilitiesList) {
         this.modifiedAt = post.getModifiedAt();
         this.postId = post.getPostId();
         this.postTitle = post.getPostTitle();
@@ -45,5 +48,6 @@ public class PostResponseDto {
         this.imageFiles = imageFiles.stream()
                 .map(Img::getImgUrl)
                 .toArray();
+        this.facilitiesList = facilitiesList;
     }
 }
