@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: ${ APPLICATION_DB_URL }
-    username: ${ APPLICATION_DB_USERNAME }
-    password: ${ APPLICATION_DB_PASSWORD }
+    url: ${ CLEARDB_DATABASE_URL }
+    username: ${ CLEARDB_DATABASE_USERNAME }
+    password: ${ CLEARDB_DATABASE_PASSWORD }
   jpa:
     hibernate:
       ddl-auto: update
