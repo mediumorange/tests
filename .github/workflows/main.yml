@@ -20,7 +20,6 @@ jobs:
   
       - name: Generate env
         run:
-          echo "PORT=8080" >> env.properties
           echo "java.runtime.version=11" >> system.properties
       
       - uses: akhileshns/heroku-deploy@v3.12.12
