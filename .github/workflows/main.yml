@@ -13,6 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: application file
+        run:
+          cd ./src/main/resources
+          touch ./application-dev.yml
+          echo "${{ secrets.APPLICATION_DEV }}" > ./application-dev.yml
+        shell: bash
+      
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
