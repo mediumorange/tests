@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: ${ CLEARDB_DATABASE_URL }
-    username: ${ CLEARDB_DATABASE_USERNAME }
-    password: ${ CLEARDB_DATABASE_PASSWORD }
+    url: ${CLEARDB_DATABASE_URL}
+    username: ${CLEARDB_DATABASE_USERNAME}
+    password: ${CLEARDB_DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -20,11 +20,11 @@ logging:
 cloud:
   aws:
     credentials:
-      accessKey: ${ APPLICATION_ACCESSKEY }
-      secretKey: ${ APPLICATION_SECRETKEY }
+      accessKey: ${APPLICATION_ACCESSKEY}
+      secretKey: ${APPLICATION_SECRETKEY}
     s3:
-      bucket: ${ APPLICATION_BUCKET }
+      bucket: ${APPLICATION_BUCKET}
     region:
       static: ap-northeast-2
 jwt:
-  secret: ${ APPLICATION_JWT }
+  secret: ${APPLICATION_JWT}
