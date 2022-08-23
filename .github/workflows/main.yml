@@ -21,21 +21,7 @@ jobs:
       - name: Generate env
         run:
           echo "PORT=8080" >> env.properties
-          echo "APPLICAION_DB_URL=$APPLICAION_DB_URL" >> env.properties
-          echo "APPLICAION_DB_USERNAME=$APPLICAION_DB_USERNAME" >> env.properties
-          echo "APPLICAION_DB_PASSWORD=$APPLICAION_DB_PASSWORD" >> env.properties
-          echo "APPLICATION_ACCESSKEY=$APPLICATION_ACCESSKEY" >> env.properties
-          echo "APPLICATION_SECRETKEY=$APPLICATION_SECRETKEY" >> env.properties
-          echo "APPLICATION_BUCKET=$APPLICATION_BUCKET" >> env.properties
-          echo "APPLICATION_JWT=$APPLICATION_JWT" >> env.properties
-        env:
-          APPLICAION_DB_URL: ${{ secrets.APPLICATION_DB_URL }}
-          APPLICATION_DB_USERNAME: ${{ secrets.APPLICATION_DB_USERNAME }}
-          APPLICATION_DB_PASSWORD: ${{ secrets.APPLICATION_DB_PASSWORD }}
-          APPLICATION_ACCESSKEY: ${{ secrets.APPLICATION_ACCESSKEY }}
-          APPLICATION_SECRETKEY: ${{ secrets.APPLICATION_SECRETKEY }}
-          APPLICATION_BUCKET: ${{ secrets.APPLICATION_BUCKET }}
-          APPLICATION_JWT: ${{ secrets.APPLICATION_JWT }}
+          echo "java.runtime.version=11" >> system.properties
       
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
