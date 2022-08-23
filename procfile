@@ -1,1 +1,1 @@
-web: java -Dlog4j2.formatMsgNoLookups=true -Dserver.port=$PORT -Dspring.profiles.active=heroku -Duser.timezone=Asia/Seoul $JAVA_OPTS -jar build/libs/CloneTeam2Backend-0.0.1-SNAPSHOT.jar
+web:java -Dlog4j2.formatMsgNoLookups=true -Dserver.port=$PORT -Dspring.profiles.active=heroku -Duser.timezone=Asia/Seoul $JAVA_OPTS -jar build/libs/CloneTeam2Backend-0.0.1-SNAPSHOT.jar
